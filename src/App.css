@@ -1,21 +1,13 @@
-/* font-size: calc(10px + 2vmin); */
-
-html {
-  scroll-behavior: smooth;
-}
-
 .slider__list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  /* width: 100vw; */
   overflow: hidden;
   justify-content: center;
   padding: 20px;
 }
 
 .slider__list__item {
-  /* width: 100vw; */
   width: 300px;
   margin: 3px;
   display: none;
