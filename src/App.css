@@ -1,38 +1,93 @@
-.App {
-  text-align: center;
+/* font-size: calc(10px + 2vmin); */
+
+html {
+  scroll-behavior: smooth;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.slider__list {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  /* width: 100vw; */
+  overflow: hidden;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+.slider__list__item {
+  /* width: 100vw; */
+  width: 300px;
+  margin: 3px;
+  display: none;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.slider__list__item--active {
+  display: block;
+}
+
+.slider__list__item > img {
+  width: 100%;
+  height: auto;
+  box-shadow: 10px 10px 20px 0 rgba(94, 47, 59, 0.2);
+  border-radius: 5px;
+}
+
+.slider__dots {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider__dots__item {
+  margin: 10px;
+  background-color: #ccc;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  transition: all 0.2s ease-in-out;
+}
+
+.slider__dots__item--active {
+  background-color: teal;
+  width: 8px;
+  height: 8px;
+}
+
+/* .slider__dots__item:hover { transform: scale(1.5); } */
+
+.slide-in-right {
+  -webkit-animation: slide-in-right 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+  animation: slide-in-right 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+
+.slide-in-left {
+  -webkit-animation: slide-in-left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+  animation: slide-in-left 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) both;
+}
+
+@keyframes slide-in-left {
+  0% {
+    -webkit-transform: translateX(-100px);
+    transform: translateX(-100px);
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  0% {
+    -webkit-transform: translateX(100px);
+    transform: translateX(100px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+    opacity: 1;
   }
 }

@@ -1,25 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useRef } from 'react';
+import img1 from './img/img1.jpg';
+import img2 from './img/img2.jpg';
+import img3 from './img/img3.jpg';
+import img4 from './img/img4.jpg';
+// import logo from './logo.svg';
 import './App.css';
+import { Slider } from './components/slider';
+
+const slides = [
+  {
+    src: img1
+  },
+  {
+    src: img2
+  },
+  {
+    src: img3
+  },
+  {
+    src: img4
+  }
+]
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Slider
+      items={slides}
+    />
   );
 }
 
