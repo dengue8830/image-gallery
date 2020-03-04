@@ -6,6 +6,7 @@ import img4 from './img/img4.jpg';
 // import logo from './logo.svg';
 import './App.css';
 import { Slider } from './components/slider';
+import { Slide } from './components/slider/Slide';
 
 const slides = [
   {
@@ -27,6 +28,12 @@ function App() {
   return (
     <Slider
       items={slides}
+      // renderItem={(itemProps) => (
+      //   <Slide
+      //     key={itemProps.index}
+      //     {...itemProps}
+      //   />
+      // )}
     />
   );
 }

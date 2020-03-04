@@ -2,8 +2,16 @@ import * as React from 'react';
 import { Slide } from './Slide';
 import { Dots } from './Dots';
 
+interface RenderItemProps {
+  slide;
+  index;
+  toTheRight;
+  activeIndex;
+}
+
 interface Props {
   items: SlideModel[];
+  renderItem?: (props: RenderItemProps) => React.ReactElement;
 }
 
 export interface SlideModel {
@@ -58,6 +66,18 @@ export function Slider(props: Props) {
     setActiveIndex(index);
   }
 
+  function renderItem(itemProps: RenderItemProps) {
+    if (props.renderItem) {
+      return props.renderItem(itemProps);
+    }
+    return (
+      <Slide
+        key={itemProps.index}
+        {...itemProps}
+      />
+    );
+  }
+
   return (
     <div
       className="slider"
@@ -68,15 +88,7 @@ export function Slider(props: Props) {
         className="slider__list"
       >
         {
-          props.items.map((slide, index) => (
-            <Slide
-              key={index}
-              index={index}
-              slide={slide}
-              activeIndex={activeIndex}
-              toTheRight={toTheRight}
-            />
-          ))
+          props.items.map((slide, index) => renderItem({ slide, index, toTheRight, activeIndex }))
         }
       </div>
       <Dots
