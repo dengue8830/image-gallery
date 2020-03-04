@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Slide } from './Slide';
+import { Dots } from './Dots';
 
 interface Props {
   items: SlideModel[];
@@ -72,16 +73,10 @@ export function Slider(props: Props) {
           ))
         }
       </div>
-      <div className="slider__dots">
-        {
-          props.items.map((slide, index) => (
-            <div
-              key={index}
-              className={"slider__dots__item " + (index === activeIndex ? "slider__dots__item--active" : "")}
-            />
-          ))
-        }
-      </div>
+      <Dots
+        count={props.items.length}
+        activeIndex={activeIndex}
+      />
     </div>
   );
 }
