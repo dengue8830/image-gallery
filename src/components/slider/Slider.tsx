@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { Slide, SlideProps } from './Slide';
 import { Dots, DotsProps } from './Dots';
-import { DotProps } from './Dot';
 
 interface Props {
   items: SlideModel[];
@@ -13,19 +12,20 @@ export interface SlideModel {
   src: string;
 }
 
-let timeoutId;
 const LONG_SCROLL_DURATION_IN_MILLS = 1000;
 
 export function Slider(props: Props) {
   const [activeIndex, setActiveIndex] = React.useState(0);
   const [toTheRight, setToTheRight] = React.useState(false);
+  let timeoutId = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
   function onScroll(event: React.WheelEvent<HTMLDivElement>) {
     const isVerticalScroll = event.deltaY !== 0;
     if (isVerticalScroll) {
       return;
     }
-    const isWaitingForLongScroll = !!timeoutId;
+    /** Long scrolling movements fires the event a lot of times, we just need one event fired. */
+    const isWaitingForLongScroll = !!timeoutId.current;
     if (isWaitingForLongScroll) {
       return;
     }
@@ -45,9 +45,9 @@ export function Slider(props: Props) {
       setActiveIndex(activeIndex - 1);
       setToTheRight(false);
     }
-    timeoutId = setTimeout(() => {
-      timeoutId && clearTimeout(timeoutId);
-      timeoutId = undefined;
+    timeoutId.current = setTimeout(() => {
+      timeoutId.current && clearTimeout(timeoutId.current);
+      timeoutId.current = undefined;
     }, LONG_SCROLL_DURATION_IN_MILLS);
   }
 
