@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { Slide, SlideProps } from './Slide';
 import { Dots, DotsProps } from './Dots';
+import './Slider.css';
 
 interface Props {
   items: SlideModel[];

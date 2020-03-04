@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Dot, DotProps } from './Dot';
+import './Dots.css';
 
 export interface DotsProps {
   count: number;

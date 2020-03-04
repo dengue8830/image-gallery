@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { SlideModel } from './Slider';
+import './Slide.css';
 
 export interface SlideProps {
   index: number;

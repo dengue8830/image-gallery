@@ -1,0 +1,8 @@
+.slider__list {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  overflow: hidden;
+  justify-content: center;
+  padding: 20px;
+}
