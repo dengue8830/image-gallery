@@ -4,6 +4,7 @@ import { Dot } from './Dot';
 interface Props {
   count: number;
   activeIndex: number;
+  onDotClick?: (index) => void;
 }
 
 export function Dots(props: Props) {
@@ -15,6 +16,7 @@ export function Dots(props: Props) {
             key={index}
             index={index}
             activeIndex={props.activeIndex}
+            onClick={() => props.onDotClick && props.onDotClick(index)}
           />
         ))
       }

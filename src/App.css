@@ -38,6 +38,7 @@
   height: 5px;
   border-radius: 50%;
   transition: all 0.2s ease-in-out;
+  cursor: pointer;
 }
 
 .slider__dots__item--active {
@@ -46,7 +47,9 @@
   height: 8px;
 }
 
-/* .slider__dots__item:hover { transform: scale(1.5); } */
+.slider__dots__item:not(.slider__dots__item--active):hover {
+  transform: scale(1.5);
+}
 
 .slide-in-right {
   -webkit-animation: slide-in-right 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) both;

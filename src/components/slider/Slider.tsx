@@ -54,6 +54,10 @@ export function Slider(props: Props) {
     // TODO: Not implemented yet.
   }
 
+  function onDotClick(index) {
+    setActiveIndex(index);
+  }
+
   return (
     <div
       className="slider"
@@ -78,6 +82,7 @@ export function Slider(props: Props) {
       <Dots
         count={props.items.length}
         activeIndex={activeIndex}
+        onDotClick={onDotClick}
       />
     </div>
   );
