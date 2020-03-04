@@ -14,7 +14,11 @@ export function Slide(props: SlideProps) {
     <div
       className={"slider__list__item " + (props.index === props.activeIndex ? "slider__list__item--active " : "") + (props.toTheRight ? 'slide-in-left' : 'slide-in-right')}
     >
-      <img src={props.slide.src} loading="lazy" />
+      <img
+        src={props.slide.src}
+        loading="lazy"
+        className="slider__list__item__img"
+      />
     </div>
   );
 }
