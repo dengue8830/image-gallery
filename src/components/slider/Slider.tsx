@@ -15,10 +15,17 @@ export interface SlideModel {
 const LONG_SCROLL_DURATION_IN_MILLS = 1000;
 
 export function Slider(props: Props) {
+  // Current visible slide.
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const [toTheRight, setToTheRight] = React.useState(false);
+  // Used to know if the fade animation should be to the right or left.
+  const [movedToTheRight, setMovedToTheRight] = React.useState(false);
+  // Used as a time window to avoid too much fired events on long scroll.
   let timeoutId = React.useRef<NodeJS.Timeout | undefined>(undefined);
 
+  /**
+   * Calculate wich one will be the next active index based on the
+   * horizontal scroll behaviour.
+   */
   function onScroll(event: React.WheelEvent<HTMLDivElement>) {
     const isVerticalScroll = event.deltaY !== 0;
     if (isVerticalScroll) {
@@ -29,21 +36,21 @@ export function Slider(props: Props) {
     if (isWaitingForLongScroll) {
       return;
     }
-    const movedToTheRight = event.deltaX < 0;
-    if (movedToTheRight) {
+    const _movedToTheRight = event.deltaX < 0;
+    if (_movedToTheRight) {
       const isTheLast = activeIndex === props.items.length - 1;
       if (isTheLast) {
         return;
       }
       setActiveIndex(activeIndex + 1);
-      setToTheRight(true);
-    } else {
+      setMovedToTheRight(true);
+    } else { // moved to the left
       const isTheFirst = activeIndex === 0;
       if (isTheFirst) {
         return;
       }
       setActiveIndex(activeIndex - 1);
-      setToTheRight(false);
+      setMovedToTheRight(false);
     }
     timeoutId.current = setTimeout(() => {
       timeoutId.current && clearTimeout(timeoutId.current);
@@ -51,6 +58,10 @@ export function Slider(props: Props) {
     }, LONG_SCROLL_DURATION_IN_MILLS);
   }
 
+  /**
+   * Calculate wich one will be the next active index based on the
+   * horizontal drag behaviour.
+   */
   function onDrag(event: React.DragEvent<HTMLDivElement>) {
     // console.log('dragging', event.pageX);
     // TODO: Not implemented yet.
@@ -97,7 +108,7 @@ export function Slider(props: Props) {
             // Default props.
             slide,
             index,
-            toTheRight,
+            toTheRight: movedToTheRight,
             activeIndex
           }))
         }
