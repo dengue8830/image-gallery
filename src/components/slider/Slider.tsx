@@ -55,11 +55,13 @@ export function Slider(props: Props) {
   }
 
   return (
-    <div className="slider">
+    <div
+      className="slider"
+      onWheel={onScroll}
+      onDrag={onDrag}
+    >
       <div
         className="slider__list"
-        onWheel={onScroll}
-        onDrag={onDrag}
       >
         {
           props.items.map((slide, index) => (
