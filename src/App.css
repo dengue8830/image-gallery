@@ -8,7 +8,6 @@
 }
 
 .slider__list__item {
-  width: 300px;
   margin: 3px;
   display: none;
 }
@@ -18,8 +17,8 @@
 }
 
 .slider__list__item__img {
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 250px;
   /* max-height: 200px; */
   box-shadow: 10px 10px 20px 0 rgba(94, 47, 59, 0.2);
   border-radius: 5px;
