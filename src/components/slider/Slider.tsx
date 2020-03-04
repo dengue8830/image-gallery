@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Slide, SlideProps } from './Slide';
-import { Dots } from './Dots';
+import { Dots, DotsProps } from './Dots';
 import { DotProps } from './Dot';
 
 interface Props {
   items: SlideModel[];
   renderItem?: (props: SlideProps) => React.ReactElement;
-  renderDot?: (props: DotProps) => React.ReactElement;
+  renderDots?: (props: DotsProps) => React.ReactElement | null;
 }
 
 export interface SlideModel {
@@ -30,7 +30,6 @@ export function Slider(props: Props) {
       return;
     }
     const movedToTheRight = event.deltaX < 0;
-    // console.log(movedToTheRight ? 'right' : 'left');
     if (movedToTheRight) {
       const isTheLast = activeIndex === props.items.length - 1;
       if (isTheLast) {
@@ -73,6 +72,17 @@ export function Slider(props: Props) {
     );
   }
 
+  function renderDots(dotsProps: DotsProps) {
+    if (props.renderDots) {
+      return props.renderDots(dotsProps);
+    }
+    return (
+      <Dots
+        {...dotsProps}
+      />
+    )
+  }
+
   return (
     <div
       className="slider"
@@ -83,14 +93,23 @@ export function Slider(props: Props) {
         className="slider__list"
       >
         {
-          props.items.map((slide, index) => renderItem({ slide, index, toTheRight, activeIndex }))
+          props.items.map((slide, index) => renderItem({
+            // Default props.
+            slide,
+            index,
+            toTheRight,
+            activeIndex
+          }))
         }
       </div>
-      <Dots
-        count={props.items.length}
-        activeIndex={activeIndex}
-        onDotClick={onDotClick}
-      />
+      {
+        renderDots({
+          // Default props.
+          activeIndex,
+          onDotClick,
+          count: props.items.length
+        })
+      }
     </div>
   );
 }
