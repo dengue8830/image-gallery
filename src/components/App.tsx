@@ -1,14 +1,11 @@
 import React, { useRef } from 'react';
-import img1 from './img/img1.jpg';
-import img2 from './img/img2.jpg';
-import img3 from './img/img3.jpg';
-import img4 from './img/img4.jpg';
+import img1 from '../img/img1.jpg';
+import img2 from '../img/img2.jpg';
+import img3 from '../img/img3.jpg';
+import img4 from '../img/img4.jpg';
 // import logo from './logo.svg';
 import './App.css';
-import { Slider } from './components/slider';
-import { Slide } from './components/slider/Slide';
-import { Dot } from './components/slider/Dot';
-import { Dots } from './components/slider/Dots';
+import { Slider, Slide, Dot, Dots } from './slider';
 
 const slides = [
   {
@@ -26,10 +23,10 @@ const slides = [
 ]
 
 function App() {
-
   return (
-    <Slider
-      items={slides}
+    <div className="app-container">
+      <Slider
+        items={slides}
       /** Open-closed principle. */
       /** Custom slide component reusing the Slide component. */
       // renderItem={(itemProps) => (
@@ -72,9 +69,10 @@ function App() {
       //     )}
       //   />
       // )}
-    /** Without dots. */
-    // renderDots={() => null}
-    />
+      /** Without dots. */
+      // renderDots={() => null}
+      />
+    </div>
   );
 }
 
