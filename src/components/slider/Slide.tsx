@@ -1,14 +1,14 @@
 import * as React from 'react';
 import { SlideModel } from './Slider';
 
-interface IProps {
+export interface SlideProps {
   index: number;
   activeIndex: number;
   toTheRight: boolean;
   slide: SlideModel
 }
 
-export function Slide(props: IProps) {
+export function Slide(props: SlideProps) {
   return (
     <div
       className={"slider__list__item " + (props.index === props.activeIndex ? "slider__list__item--active " : "") + (props.toTheRight ? 'slide-in-left' : 'slide-in-right')}

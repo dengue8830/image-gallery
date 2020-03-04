@@ -1,17 +1,12 @@
 import * as React from 'react';
-import { Slide } from './Slide';
+import { Slide, SlideProps } from './Slide';
 import { Dots } from './Dots';
-
-interface RenderItemProps {
-  slide;
-  index;
-  toTheRight;
-  activeIndex;
-}
+import { DotProps } from './Dot';
 
 interface Props {
   items: SlideModel[];
-  renderItem?: (props: RenderItemProps) => React.ReactElement;
+  renderItem?: (props: SlideProps) => React.ReactElement;
+  renderDot?: (props: DotProps) => React.ReactElement;
 }
 
 export interface SlideModel {
@@ -66,7 +61,7 @@ export function Slider(props: Props) {
     setActiveIndex(index);
   }
 
-  function renderItem(itemProps: RenderItemProps) {
+  function renderItem(itemProps: SlideProps) {
     if (props.renderItem) {
       return props.renderItem(itemProps);
     }

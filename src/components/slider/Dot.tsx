@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-interface Props {
+export interface DotProps {
   index: number;
   activeIndex: number;
   onClick?: () => void;
 }
 
-export function Dot(props: Props) {
+export function Dot(props: DotProps) {
   return (
     <div
       key={props.index}
