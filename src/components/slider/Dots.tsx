@@ -8,6 +8,9 @@ export interface DotsProps {
   renderItem?: (props: DotProps) => React.ReactElement | null;
 }
 
+/**
+ * Container for dots list.
+ */
 export function Dots(props: DotsProps) {
   function renderItem(itemProps: DotProps) {
     if (props.renderItem) {

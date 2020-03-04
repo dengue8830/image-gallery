@@ -30,6 +30,7 @@ function App() {
   return (
     <Slider
       items={slides}
+      /** Open-closed principle. */
       /** Custom slide component reusing the Slide component. */
       // renderItem={(itemProps) => (
       //   <Slide

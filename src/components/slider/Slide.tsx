@@ -8,6 +8,7 @@ export interface SlideProps {
   slide: SlideModel
 }
 
+/** Represent an item in the slider. */
 export function Slide(props: SlideProps) {
   return (
     <div

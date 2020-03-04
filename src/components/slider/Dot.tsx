@@ -6,6 +6,10 @@ export interface DotProps {
   onClick?: () => void;
 }
 
+/**
+ * Represents a page in the dots list.
+ * A page can be composed by one or more slides.
+ */
 export function Dot(props: DotProps) {
   return (
     <div
